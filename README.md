@@ -1,36 +1,41 @@
-# FermenterManager
-Tkinter-based fermentation management software for home winemakers and brewers. Tracks multiple fermenters, logs events with timestamps, stores gravity/ABV, manages batch transfers, archives completed brews, and persists data locally via JSON.
+# Fermenter Manager
 
-## Features
-- Dashboard with dynamically addable fermenter slots (default: 5)
-- Create brews with OG/FG, category, notes & recipe
-- Timestamped event logging (gravity, nutrients, pH, temperature, etc.)
-- Track fermentation stages and vessel transfers with volume loss
-- Archive finished batches with full log history
-- Export/backup JSON state
-- Offline - no network required
+**Fermenter Manager** is a desktop application built with Python and Tkinter designed for home brewers, vintners, and fermenters to easily track, log, and manage multiple active fermentation batches. It provides a clean, local interface for monitoring metrics, logging events, and archiving completed brews.
 
-## Roadmap
-- Charting for gravity/temp curves
-- CSV export + import
-- Encryption option for logs
-- Web dashboard interface
-** Contributions welcome! Fork, modify, and open a PR. **
+## ✨ Key Features
 
-## Files
-________________________________________________________________________________
-| File                   | Purpose                                             |
---------------------------------------------------------------------------------
-| 'FermenterManager.py'  | Main Tkinter app + data model + history/state logic |
-| 'brews.json'           | Active fermenters (auto-generated)                  |
-| 'brew_history.json'    | Archived batches (auto-generated)                   |
---------------------------------------------------------------------------------
+* **Multi-Slot Tracking:** Manage a fixed number of fermentation slots with easy slot-to-slot navigation.
+* **Persistent Data:** All active brew data, history, and configuration are saved automatically to local JSON files.
+* **Customizable Configuration:** Easily define your own `CATEGORIES`, `STAGES`, and `EVENT_TYPES` via the `config.json` file.
+* **Automatic Logging:** Changes to key metrics (OG, FG, Volume, pH, Temp) are automatically logged as time-stamped events when details are saved.
+* **Calculated Metrics:** Automatically calculates **Approximate ABV** based on Original and Final Gravity readings.
 
-## Requirements
-- Python 3.10+ (3.9+ should also work)
-- Tkinter (bundled with most Python installs)
-- zoneinfo (standard in 3.9+)
+---
 
-## Run
-'''bash
-python3 FermenterManager.py
+## 🚀 What's New in v3.3 (Latest Update: December 5, 2025)
+
+The v3.3 release focuses heavily on user experience, data integrity, and clearer tracking:
+
+| Area | Feature | Description |
+| :--- | :--- | :--- |
+| **Data Integrity** | **Log Entry Deletion** | Added a **"Delete Entry"** feature to the Live Log for correcting accidental or erroneous data reports (with confirmation). |
+| **UI/UX** | **Split Recipe & Notes** | The Recipe and Notes sections are now **separated into two distinct, enlarged panels** with white backgrounds for clearer data entry and visibility. |
+| **Safety UX** | **Destructive Action Styling** | The **"Archive Brew & Clear Fermenter"** button is restyled in red to clearly signal its function as a destructive action, preventing accidental slot clearing. |
+| **Tracking** | **Enhanced Time & Volume** | Brew duration tracking now includes **hours and minutes** for higher precision, and transfer logging is updated to accurately record **volume loss**. |
+
+---
+
+## ⚙️ Installation & Setup
+
+### Requirements
+
+Fermenter Manager requires **Python 3.x** and only uses standard libraries for its core functionality (including `tkinter` for the GUI). No external dependencies (like Matplotlib) are required to run the program.
+
+### Running the Application
+
+1.  Clone this repository or download the `FermenterManager.py` and `config.json` files.
+2.  Open your terminal or command prompt in the directory where the files are located.
+3.  Run the application:
+
+```bash
+python FermenterManager.py
