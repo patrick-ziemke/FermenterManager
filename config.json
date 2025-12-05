@@ -1,0 +1,34 @@
+{
+    "DEFAULT_SLOT_COUNT": 5,
+    "LOCAL_TIMEZONE": "America/New_York",
+    "DATE_DISPLAY_FMT": "%Y-%m-%d %H:%M",
+    "CATEGORIES": [
+      "Beer",
+      "Wine",
+      "Mead",
+      "Cider",
+      "Kombucha",
+      "Seltzer",
+      "Other"
+    ],
+    "STAGES": [
+      "Primary",
+      "Secondary",
+      "Aging",
+      "Cold Crash",
+      "Bottled",
+      "Kegged"
+    ],
+    "EVENT_TYPES": [
+      "General Note",
+      "Gravity Reading",
+      "Nutrient Addition",
+      "pH Reading",
+      "Temp Check",
+      "Aeration",
+      "Dry Hop",
+      "Fruit Addition",
+      "Fruit Removal",
+      "Brew Stage Change"
+    ]
+  }
