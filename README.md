@@ -12,7 +12,7 @@
 
 ---
 
-## 🚀 What's New in v3.3 (Latest Update: December 5, 2025)
+## 🚀 What's New in v3.3 (Latest Update: Dec 5, 2025)
 
 The v3.3 release focuses heavily on user experience, data integrity, and clearer tracking:
 
@@ -30,6 +30,14 @@ The v3.3 release focuses heavily on user experience, data integrity, and clearer
 ### Requirements
 
 Fermenter Manager requires **Python 3.x** and only uses standard libraries for its core functionality (including `tkinter` for the GUI). No external dependencies (like Matplotlib) are required to run the program.
+
+### Initial Configuration ⚠️
+
+Before running the application, you **must** update the timezone settings in `config.json` to ensure accurate time logging:
+
+1.  Open the `config.json` file in a text editor.
+2.  Locate the `"LOCAL_TIMEZONE"` entry.
+3.  Change the value `"America/New_York"` to your **local timezone string** (e.g., `"Europe/London"`, `"America/Los_Angeles"`, etc.). You can find a full list of valid timezone strings online (e.g., Wikipedia TZ database list).
 
 ### Running the Application
 
