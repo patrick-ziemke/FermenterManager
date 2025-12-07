@@ -12,7 +12,7 @@
 
 ---
 
-## 🚀 What's New in v3.4 (Latest Update: Dec 6, 2025)
+## 🚀 What's New in v3.4 (Latest Update: Dec 7, 2025)
 The v3.4 release introduces visual analytics, enhanced data validation, and improved archive management:
 
 | Area | Feature | Description |
@@ -25,7 +25,7 @@ The v3.4 release introduces visual analytics, enhanced data validation, and impr
 | **Data Reliability** | **Autosave & Atomic Writes** | **Autosave on window close** prevents data loss, and **atomic file writing** for history prevents corruption during saves. |
 | **Chart Accuracy** | **Improved Parsing** | Gravity parsing now handles **2+ decimal places** (e.g., 1.03, 1.050) for accurate chart plotting. |
 | **UI Polish** | **History Tab Redesign** | Improved styling and layout for better readability and navigation. |
-
+| **Fermenter Handling** | **Removal Process Flow Redesign** | Users now select which empty slot to delete instead of forced last-slot removal. |
 ---
 
 ## ⚙️ Installation & Setup
