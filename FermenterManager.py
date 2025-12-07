@@ -1391,7 +1391,7 @@ class App(tk.Tk):
 
     # === History Viewer Logic ===
 
-    def _refresh_history_list(self, event: Optional[Any]) -> None:
+    def _refresh_history_list(self, event: Optional[Any] = None) -> None:
         """Populates the TreeView list in the 'Brew History' tab."""
         self.search_var.set("") # Clear search
         for item in self.hist_tree.get_children(): self.hist_tree.delete(item)
