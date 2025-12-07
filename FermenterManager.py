@@ -15,6 +15,9 @@ history saving to an atomic process to prevent file corruption. Validation check
 introduced for gravity inputs and archive edits (OG/FG). Transfer volume validation was
 added to ensure logical volume loss. Gravity parsing logic was improved for better chart
 accuracy data.
+- Corrected data logging to ensure OG/FG values use three decimal places.
+- Made the '_refresh_history_list' event handler arg optional to resolve the Tkinter TypeError.
+- Ferenter removal now lets user select which empty slot to delete.
 
 Persistence:
 ------------
@@ -614,16 +617,14 @@ class FermenterManager:
         self.slots.append({'name': f"Fermenter {new_idx}", 'brew': None})
         self.save_state()
 
-    def remove_last_slot(self) -> None:
+    def delete_slot_by_index(self, idx:int) -> bool:
         """
-        Removes the last fermenter slot.
+        Docstring placeholder
+        """
+        if self.slots[idx]['brew'] is not None:
+            return False
         
-        Returns:
-            True if the slot was removed, False if the slot was occupied or the list was empty.
-        """
-        if not self.slots: return False
-        if self.slots[-1]['brew'] is not None: return False # Cannot remove occupied slot
-        self.slots.pop()
+        self.slots.pop(idx)
         self.save_state()
         return True
         
@@ -1201,7 +1202,13 @@ class App(tk.Tk):
         # Log all metric changes that passed validation
         for key, new_val in updates.items():
             event_type, unit = metric_map[key]
-            log_text = f"{key.upper()} updated to {new_val}{unit}"
+            
+            if key in ('og', 'fg'):
+                formatted_val = f"{new_val:.3f}"
+            else:
+                formatted_val = str(new_val)
+            
+            log_text = f"{key.upper()} updated to {formatted_val}{unit}"
             brew.add_event(event_type, log_text)
 
         # Log stage change if necessary
@@ -1383,11 +1390,33 @@ class App(tk.Tk):
         self._refresh_dashboard()
         
     def remove_fermenter(self) -> None:
-        """Removes the last fermenter slot, checking if it's empty first."""
-        if not self.manager.remove_last_slot():
-            messagebox.showerror("Error", "Cannot remove. Ensure last slot is empty.")
-        else:
-            self._refresh_dashboard()
+        """
+        Docstring placeholder.
+        """
+        empty = [i for i,s in enumerate(self.manager.slots) if s['brew'] is None]
+
+        if not empty:
+            messagebox.showinfo("No Empty Fermenters", "All fermenters contain brews. None can be removed.")
+            return
+        
+        win = tk.Toplevel(self)
+        win.title("Remove Fermenter")
+        ttk.Label(win, text="Select an empty fermenter to remove:").pack(pady=10)
+
+        selected = tk.StringVar()
+        names = [f"{self.manager.slots[i]['name']} (Slot {i+1})" for i in empty]
+        box = ttk.Combobox(win, values=names, textvariable=selected, state="readonly")
+        box.pack(pady=6)
+        box.current(0)
+
+        def confirm():
+            idx = empty[names.index(selected.get())]
+            if messagebox.askyesno("Confirm Delete", f"Delete {self.manager.slots[idx]['name']} permanently?"):
+                self.manager.delete_slot_by_index(idx)
+                self._refresh_dashboard()
+                win.destroy()
+
+        ttk.Button(win, text="Delete", command=confirm).pack(pady=10)
 
     # === History Viewer Logic ===
 
