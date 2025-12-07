@@ -48,9 +48,9 @@ Before running the application, you **must** update the timezone settings in `co
 3.  Change the value `"America/New_York"` to your **local timezone string** (e.g., `"Europe/London"`, `"America/Los_Angeles"`, etc.). You can find a full list of valid timezone strings online (e.g., Wikipedia TZ database list).
 
 ### Running the Application
-1.  Clone this repository or download the `FermenterManager3.py` and `config.json` files.
+1.  Clone this repository or download the `FermenterManager.py` and `config.json` files.
 2.  Open your terminal or command prompt in the directory where the files are located.
 3.  Run the application:
 ```bash
-python FermenterManager3.py
+python FermenterManager.py
 ```
